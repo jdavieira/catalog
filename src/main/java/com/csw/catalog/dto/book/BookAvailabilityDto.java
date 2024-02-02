@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum BookAvailabilityDto {
+
     TO_BE_LAUNCHED(0),
     ON_PRE_ORDER(1),
     ON_ORDER(2),

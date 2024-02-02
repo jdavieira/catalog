@@ -1,16 +1,14 @@
-package com.csw.catalog.dto.language;
+package com.csw.catalog.dto.tag;
 
 import io.smallrye.common.constraint.NotNull;
 import jakarta.validation.constraints.Size;
 
 
-public class LanguageRequestDto {
+public class TagUpdateRequestDto {
 
     @NotNull
+    public long id;
+
     @Size(max = 255)
     public String name;
-
-    @NotNull
-    @Size(max = 5)
-    public String culture;
 }

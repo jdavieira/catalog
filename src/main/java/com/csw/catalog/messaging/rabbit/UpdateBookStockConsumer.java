@@ -6,6 +6,7 @@ import io.vertx.core.json.JsonObject;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.jbosslog.JBossLog;
+import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.jobrunr.jobs.annotations.Job;
 import org.jobrunr.scheduling.JobScheduler;
 
@@ -23,7 +24,7 @@ public class UpdateBookStockConsumer {
         this.jobScheduler = jobScheduler;
     }
 
-    //@Incoming("catalog")
+    @Incoming("catalog-requests")
     public void receiveUpdateBookStockEvent(JsonObject messageEvent) {
 
         var event = messageEvent.mapTo(UpdateBookStockEvent.class);

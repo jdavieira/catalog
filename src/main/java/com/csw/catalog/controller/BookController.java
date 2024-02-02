@@ -1,32 +1,32 @@
 package com.csw.catalog.controller;
 
 import com.csw.catalog.dto.book.BookRequestDto;
+import com.csw.catalog.dto.book.BookSellDto;
+import com.csw.catalog.dto.book.BookUpdateRequestDto;
 import com.csw.catalog.service.BookService;
+import com.csw.catalog.util.exception.EntityNullException;
 import com.csw.catalog.util.exception.SaveEntityException;
 import io.quarkus.security.Authenticated;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.extern.jbosslog.JBossLog;
+
+import java.util.concurrent.CompletableFuture;
 
 @Path("/v1/api/book")
 @ApplicationScoped
 @Authenticated
+@JBossLog
 public class BookController {
 
-
     private final BookService service;
-
 
     public BookController(BookService service) {
 
         this.service = service;
-    }
-
-
-    @GET
-    @Path("/produceMessage")
-    public void produceMessage() {
     }
 
     @GET
@@ -58,7 +58,7 @@ public class BookController {
     }
 
     @GET
-    @Path("/{title}")
+    @Path("/title/{title}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getBooksByTitle(String title) {
 
@@ -71,7 +71,7 @@ public class BookController {
     }
 
     @GET
-    @Path("/{originalTitle}")
+    @Path("/originalTitle/{originalTitle}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getBooksByOriginalTitle(String originalTitle) {
 
@@ -84,7 +84,7 @@ public class BookController {
     }
 
     @GET
-    @Path("/{isbn}")
+    @Path("/isbn/{isbn}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getBooksByISBN(String isbn) {
 
@@ -97,7 +97,7 @@ public class BookController {
     }
 
     @GET
-    @Path("/{synopsis}")
+    @Path("/synopsis/{synopsis}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getBooksBySynopsis(String synopsis) {
 
@@ -109,11 +109,9 @@ public class BookController {
         }
     }
 
-
     @POST
-    @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response createBook(BookRequestDto bookRequest) {
+    public Response createBook(@Valid BookRequestDto bookRequest) {
         try {
             var bookId = this.service.createBook(bookRequest);
             return Response.ok(bookId).build();
@@ -122,6 +120,37 @@ public class BookController {
         }
     }
 
+    @POST
+    @Path("/sellBook")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response sellBook(@Valid BookSellDto bookSellDto) {
+        try {
+
+            var sellFuture = this.service.sellBook(bookSellDto.id, bookSellDto.stock);
+            CompletableFuture.completedFuture(sellFuture);
+
+            return Response.noContent().build();
+        } catch (Exception exception) {
+            return Response.status(Response.Status.BAD_REQUEST.getStatusCode(), exception.getMessage()).build();
+        }
+    }
+
+    @PUT
+    @Path("/{bookId}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response updateBook(long bookId, @Valid BookUpdateRequestDto bookUpdateRequest) {
+        try {
+            var updateBook = this.service.updateBook(bookId, bookUpdateRequest);
+            CompletableFuture.completedFuture(updateBook);
+            return Response.noContent().build();
+        } catch (SaveEntityException | EntityNullException exception) {
+            log.warn(exception.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST.getStatusCode(), exception.getMessage()).build();
+        } catch (NotFoundException exception) {
+            log.warn(exception.getMessage());
+            return Response.status(Response.Status.NOT_FOUND.getStatusCode(), exception.getMessage()).build();
+        }
+    }
 
     @DELETE
     @Path("/{id}")

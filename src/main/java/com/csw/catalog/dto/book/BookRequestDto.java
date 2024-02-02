@@ -8,7 +8,6 @@ import com.csw.catalog.dto.publisher.PublisherRequestDto;
 import com.csw.catalog.dto.tag.TagRequestDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -17,26 +16,21 @@ import java.util.List;
 
 public class BookRequestDto {
     @NotNull
-    @NotBlank(message = "Title may not be blank")
     @Size(max = 100)
     public String title;
     @NotNull
-    @NotBlank(message = "Original title may not be blank")
     @Size(max = 100)
     public String originalTitle;
 
     @NotNull
-    @NotBlank(message = "ISBN may not be blank")
     @Size(max = 30)
     public String isbn;
 
     @NotNull
-    @NotBlank(message = "Edition may not be blank")
     @Size(max = 100)
     public String edition;
 
     @NotNull
-    @NotBlank(message = "Synopsis may not be blank")
     @Size(max = 100)
     public String synopsis;
 

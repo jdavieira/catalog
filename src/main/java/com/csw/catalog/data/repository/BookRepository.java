@@ -10,6 +10,7 @@ import java.util.Optional;
 @ApplicationScoped
 public class BookRepository implements PanacheRepository<Book> {
 
+
     public List<Book> findByTitle(String title) {
         return find("title", title).stream().toList();
     }
@@ -31,4 +32,5 @@ public class BookRepository implements PanacheRepository<Book> {
         var searchSynopsis = "%" + synopsis + "%";
         return find("synopsis LIKE ?1", searchSynopsis).stream().toList();
     }
+    
 }
