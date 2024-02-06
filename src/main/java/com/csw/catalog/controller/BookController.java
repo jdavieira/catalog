@@ -63,8 +63,8 @@ public class BookController {
     public Response getBooksByTitle(String title) {
 
         try {
-            var book = this.service.findBookByTitle(title);
-            return Response.ok(book).build();
+            var books = this.service.findBookByTitle(title);
+            return Response.ok(books).build();
         } catch (NotFoundException exception) {
             return Response.status(Response.Status.NOT_FOUND.getStatusCode(), exception.getMessage()).build();
         }
@@ -76,8 +76,8 @@ public class BookController {
     public Response getBooksByOriginalTitle(String originalTitle) {
 
         try {
-            var book = this.service.findBookByOriginalTitle(originalTitle);
-            return Response.ok(book).build();
+            var books = this.service.findBookByOriginalTitle(originalTitle);
+            return Response.ok(books).build();
         } catch (NotFoundException exception) {
             return Response.status(Response.Status.NOT_FOUND.getStatusCode(), exception.getMessage()).build();
         }
@@ -102,8 +102,8 @@ public class BookController {
     public Response getBooksBySynopsis(String synopsis) {
 
         try {
-            var book = this.service.findBySynopsis(synopsis);
-            return Response.ok(book).build();
+            var books = this.service.findBySynopsis(synopsis);
+            return Response.ok(books).build();
         } catch (NotFoundException exception) {
             return Response.status(Response.Status.NOT_FOUND.getStatusCode(), exception.getMessage()).build();
         }

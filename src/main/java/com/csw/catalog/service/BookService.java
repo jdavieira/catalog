@@ -49,7 +49,7 @@ public class BookService {
 
     public List<BookDto> findAllBooks() {
 
-        var books = this.repository.findAll().stream().toList();
+        var books = this.repository.findAll().list();
         return this.bookMapper.mapBooksToBooksDto(books);
     }
 
