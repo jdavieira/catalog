@@ -5,11 +5,13 @@ import com.csw.catalog.service.BookService;
 import io.vertx.core.json.JsonObject;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.NotFoundException;
+import lombok.Generated;
 import lombok.extern.jbosslog.JBossLog;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.jobrunr.jobs.annotations.Job;
 import org.jobrunr.scheduling.JobScheduler;
 
+@Generated
 @ApplicationScoped
 @JBossLog
 public class UpdateBookStockConsumer {

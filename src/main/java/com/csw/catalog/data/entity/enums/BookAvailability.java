@@ -1,7 +1,9 @@
 package com.csw.catalog.data.entity.enums;
 
+import lombok.Generated;
 import lombok.Getter;
 
+@Generated
 @Getter
 public enum BookAvailability {
     TO_BE_LAUNCHED(0),

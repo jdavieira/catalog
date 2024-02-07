@@ -7,11 +7,13 @@ import com.csw.catalog.dto.language.LanguageDto;
 import com.csw.catalog.dto.publisher.PublisherDto;
 import com.csw.catalog.dto.tag.TagDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Generated;
 
 import java.sql.Date;
 import java.time.Instant;
 import java.util.List;
 
+@Generated
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookDto {
 

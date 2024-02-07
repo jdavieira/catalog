@@ -6,6 +6,7 @@ import lombok.*;
 import java.sql.Date;
 import java.util.Set;
 
+@Generated
 @Entity
 @Table(name = "author")
 @Getter

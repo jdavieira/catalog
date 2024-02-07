@@ -356,6 +356,32 @@ class BookServiceTests {
         verify(mockRepository, times(1)).persist(any(Book.class));
     }
 
+
+    @Test
+    void givenValidBook_whenUpdatingBookInformation_thenLogsSuccessMessage() {
+        // Arrange
+        var bookId = 1L;
+        var bookDto = Instancio.create(BookUpdateRequestDto.class);
+        var book = Instancio.create(Book.class);
+
+        var bookMapped = bookMapper.mapBookToBookBookUpdateRequestDto(book);
+
+        bookDto.formats = bookMapped.formats;
+        bookDto.authors = bookMapped.authors;
+        bookDto.genres = bookMapped.genres;
+        bookDto.publisher = bookMapped.publisher;
+        bookDto.languages = bookMapped.languages;
+        bookDto.tags = bookMapped.tags;
+
+        when(this.mockRepository.findById(bookId)).thenReturn(book);
+        doNothing().when(this.mockRepository).persist(any(Book.class));
+        // Act
+        service.updateBook(bookId, bookDto);
+        // Assert
+        verify(mockRepository, times(1)).findById(bookId);
+        verify(mockRepository, times(1)).persist(any(Book.class));
+    }
+
     @Test
     void givenInvalidBook_whenSellingBook_thenThrowsException() {
         // Arrange

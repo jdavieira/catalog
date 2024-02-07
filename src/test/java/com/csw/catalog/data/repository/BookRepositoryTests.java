@@ -97,6 +97,42 @@ class BookRepositoryTests {
     }
 
     @Test
+    @DisplayName("JUnit test for get Book By Synopsis")
+    void givenBookObject_whenFindBySynopsis_thenReturnBookObject() {
+        // Arrange
+        repository.persist(book);
+
+        var synopsis = book.getSynopsis().substring(0, 1);
+
+        // Act
+        var result = repository.findBySynopsis(synopsis);
+        // Assert
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("JUnit test for get Book By title")
+    void givenBookObject_whenFindByTitle_thenReturnBookObject() {
+        // Arrange
+        repository.persist(book);
+        // Act
+        var result = repository.findByTitle(book.getTitle());
+        // Assert
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("JUnit test for get Book available")
+    void givenBookObject_whenFindBooksAvailable_thenReturnBookObject() {
+        // Arrange
+        repository.persist(book);
+        // Act
+        var result = repository.findBooksAvailable();
+        // Assert
+        assertNotNull(result);
+    }
+
+    @Test
     @DisplayName("JUnit test to delete a book by uid")
     void givenValidId_whenDeletingBook_thenShouldDeleteBook() {
         // Arrange
@@ -118,6 +154,8 @@ class BookRepositoryTests {
                 .ignore(all(field("tags")))
                 .ignore(all(field("formats")))
                 .create();
+
+        newBook.setStockAvailable(10);
 
         newBook.setPublisher(Instancio.of(Publisher.class).ignore(all(field("id"))).create());
 

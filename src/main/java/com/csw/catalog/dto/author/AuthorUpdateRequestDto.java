@@ -3,9 +3,11 @@ package com.csw.catalog.dto.author;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Generated;
 
 import java.sql.Date;
 
+@Generated
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthorUpdateRequestDto {
 

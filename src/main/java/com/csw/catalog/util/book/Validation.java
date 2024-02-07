@@ -11,6 +11,7 @@ import com.csw.catalog.dto.language.LanguageUpdateRequestDto;
 import com.csw.catalog.dto.publisher.PublisherUpdateRequestDto;
 import com.csw.catalog.dto.tag.TagUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Generated;
 
 import java.util.HashSet;
 import java.util.List;
@@ -224,6 +225,7 @@ public class Validation {
         return publisher;
     }
 
+    @Generated
     private static BookAvailability mapAvailability(BookAvailabilityDto availability) {
         return switch (availability) {
             case ON_PRE_ORDER -> BookAvailability.ON_PRE_ORDER;

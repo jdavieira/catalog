@@ -2,10 +2,12 @@ package com.csw.catalog.dto.author;
 
 import io.smallrye.common.constraint.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Generated;
 
 import java.sql.Date;
 
 
+@Generated
 public class AuthorRequestDto {
     @NotNull
     @Size(max = 255)

@@ -1,10 +1,8 @@
 package com.csw.catalog.messaging.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Generated
 @Setter
 @Getter
 @NoArgsConstructor

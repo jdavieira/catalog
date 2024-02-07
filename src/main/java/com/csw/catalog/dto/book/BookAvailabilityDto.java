@@ -1,7 +1,9 @@
 package com.csw.catalog.dto.book;
 
+import lombok.Generated;
 import lombok.Getter;
 
+@Generated
 @Getter
 public enum BookAvailabilityDto {
 

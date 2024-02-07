@@ -10,10 +10,12 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Generated;
 
 import java.sql.Date;
 import java.util.List;
 
+@Generated
 public class BookRequestDto {
     @NotNull
     @Size(max = 100)

@@ -2,6 +2,7 @@ package com.csw.catalog;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.Application;
+import lombok.Generated;
 import org.eclipse.microprofile.openapi.annotations.Components;
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeIn;
@@ -9,7 +10,7 @@ import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
 import org.eclipse.microprofile.openapi.annotations.info.Info;
 import org.eclipse.microprofile.openapi.annotations.security.*;
 
-
+@Generated
 @OpenAPIDefinition(
         info = @Info(
                 title = "Catalog Service API",

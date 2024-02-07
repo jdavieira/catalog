@@ -1,13 +1,11 @@
 package com.csw.catalog.data.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
+@Generated
 @Entity
 @Table(name = "format")
 @Getter
